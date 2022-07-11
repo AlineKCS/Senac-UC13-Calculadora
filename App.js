@@ -33,6 +33,7 @@ export default function App() {
         calculator()
         return
       case '+/-':
+        setCurrentNumber((currentNumber - currentNumber * 2).toString())
         return
    }
 
