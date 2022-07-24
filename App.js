@@ -9,12 +9,16 @@ export default function App() {
   const [currentNumber, setCurrentNumber] = useState("")
   const [lastNumber, setLastNumber] = useState("")
 
-
-  function calculator(){    
-        setCurrentNumber((eval(currentNumber)).toString())
+  function calculator(){
+      
+        
+      setCurrentNumber((eval(currentNumber)).toString())
   }
 
   function handleInput(buttonPressed) {
+    const numbers = currentNumber.split(" ") //Converte string em array
+    const lastNum = numbers[numbers.length - 1] //último elemento da array
+
     console.log(buttonPressed) // Mostra no Console a tecla pressionada
     if (buttonPressed === '+' | buttonPressed === "-" | buttonPressed === "*" | buttonPressed === "/") {
       setCurrentNumber(currentNumber + " " + buttonPressed + " ")
@@ -33,8 +37,13 @@ export default function App() {
         calculator()
         return
       case '+/-':
-        setCurrentNumber((currentNumber - currentNumber * 2).toString())
+        setCurrentNumber((lastNum * - 1).toString())
         return
+      case '%':       
+        setLastNumber(currentNumber + "%" + " = ")       
+        numbers[numbers.length-1] = lastNum / 100 
+        setCurrentNumber((numbers.join(" ")).toString())
+        return 
    }
 
     setCurrentNumber(currentNumber + buttonPressed)
